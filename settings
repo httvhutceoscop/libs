@@ -1,0 +1,33 @@
+/**
+ * Created by nguyen.tien.viet on 9/3/2015.
+ */
+function customLog(txt, obj) {
+
+    console.log(txt + ': ');
+    if(obj) console.log(obj);
+}
+
+function autoResize(w, h, el) {
+
+    w = parseInt(w);
+    h = parseInt(h);
+
+    $(window).resize(function(){
+        var w_window = $(this).width();
+        var h_window = $(this).height();
+
+        if (w_window / h_window < w / h) {
+            $(el).attr('width', w_window).attr('height', w_window * h / w);
+        } else {
+            $(el).attr({'width': h_window * w / h, 'height': h_window});
+        }
+    }).trigger('resize');
+}
+
+function getMousePos(maxX, maxY, event) {
+
+    return {
+        x: Math.max(0, Math.min(maxX, event.pageX)),
+        y: Math.max(0, Math.min(maxY, event.pageY))
+    }
+}
